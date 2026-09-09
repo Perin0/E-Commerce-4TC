@@ -1,6 +1,9 @@
 
 package quatro.tc.ecommerce.ecommerce4tc_back.repositorios;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import java.math.BigDecimal;
 
 import org.junit.jupiter.api.Test;
@@ -28,5 +31,10 @@ public class ProdutoRepositorioTests {
         
         // SELECT * FROM categoria WHERE id = 1
         var categoria = categoriaRepositorio.findById(Short.parseShort("1")).orElseThrow();
+        produto.setCategoria(categoria);
+
+        produtoRespoRepositorio.save(produto);
+        assertNotNull(produto.getId());
+        assertEquals(6, produto.getId());
     }
 }
